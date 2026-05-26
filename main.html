@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy 21st Birthday My Love 💖</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Parisienne&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      font-family:'Nunito',sans-serif;
+      overflow-x:hidden;
+      color:#5c435d;
+      background:
+        radial-gradient(circle at top left,#ffd6e7 0%,transparent 30%),
+        radial-gradient(circle at bottom right,#ffe8f1 0%,transparent 30%),
+        linear-gradient(135deg,#fff7fb,#ffeef5);
+      min-height:100vh;
+      position:relative;
+    }
+
+    .title-font{
+      font-family:'Parisienne',cursive;
+    }
+
+    .blob{
+      position:absolute;
+      border-radius:50%;
+      filter:blur(90px);
+      opacity:.35;
+      z-index:-1;
+      animation: floatBlob 10s ease-in-out infinite;
+    }
+
+    .blob1{
+      width:300px;
+      height:300px;
+      background:#ffc1d6;
+      top:-100px;
+      left:-100px;
+    }
+
+    .blob2{
+      width:250px;
+      height:250px;
+      background:#ffd9ea;
+      bottom:-100px;
+      right:-100px;
+      animation-delay:2s;
+    }
+
+    @keyframes floatBlob{
+      0%,100%{
+        transform:translateY(0px);
+      }
+      50%{
+        transform:translateY(-20px);
+      }
+    }
+
+    #petals{
+      position:fixed;
+      inset:0;
+      overflow:hidden;
+      pointer-events:none;
+      z-index:0;
+    }
+
+    .petal{
+      position:absolute;
+      top:-10vh;
+      animation:fall linear infinite;
+      opacity:.85;
+    }
+
+    @keyframes fall{
+      0%{
+        transform:
+          translateY(-10vh)
+          rotate(0deg)
+          translateX(0px);
+      }
+
+      100%{
+        transform:
+          translateY(110vh)
+          rotate(360deg)
+          translateX(50px);
+      }
+    }
+
+    .fade-in{
+      animation:fadeIn 1.8s ease forwards;
+    }
+
+    @keyframes fadeIn{
+      from{
+        opacity:0;
+        transform:translateY(30px);
+      }
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+
+    .floating{
+      animation:floating 4s ease-in-out infinite;
+    }
+
+    @keyframes floating{
+      0%,100%{
+        transform:translateY(0px);
+      }
+      50%{
+        transform:translateY(-12px);
+      }
+    }
+
+    .cute-btn{
+      background:linear-gradient(135deg,#ff9fc5,#ff7eb3);
+      box-shadow:0 10px 30px rgba(255,126,179,.35);
+      transition:.4s ease;
+    }
+
+    .cute-btn:hover{
+      transform:translateY(-5px) scale(1.03);
+    }
+
+    .letter-card{
+      background:rgba(255,255,255,.55);
+      backdrop-filter:blur(16px);
+      border:1px solid rgba(255,255,255,.5);
+      transition:.4s ease;
+    }
+
+    .letter-card:hover{
+      transform:
+        translateY(-8px)
+        rotate(1deg)
+        scale(1.03);
+
+      box-shadow:0 20px 35px rgba(255,182,193,.25);
+    }
+
+    .locked{
+      filter:grayscale(1) blur(2px);
+      opacity:.6;
+      pointer-events:none;
+    }
+
+    .modal{
+      background:rgba(255,240,247,.35);
+      backdrop-filter:blur(10px);
+    }
+
+    .modal-box{
+      background:rgba(255,255,255,.75);
+      backdrop-filter:blur(20px);
+      border:1px solid rgba(255,255,255,.5);
+    }
+
+    /* BOUQUET POPUP */
+
+    #bouquetPopup{
+      animation:popupFade 1s ease;
+    }
+
+    @keyframes popupFade{
+      from{
+        opacity:0;
+        transform:scale(1.1);
+      }
+      to{
+        opacity:1;
+        transform:scale(1);
+      }
+    }
+
+    /* MUSIC BUTTON */
+
+    .music-btn{
+      position:fixed;
+      top:20px;
+      right:20px;
+      z-index:999;
+      width:55px;
+      height:55px;
+      border-radius:50%;
+      border:none;
+      cursor:pointer;
+      background:linear-gradient(135deg,#ff9fc5,#ff7eb3);
+      color:white;
+      font-size:22px;
+      box-shadow:0 10px 25px rgba(255,126,179,.35);
+      transition:.3s ease;
+    }
+
+    .music-btn:hover{
+      transform:scale(1.08);
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- BACKGROUND MUSIC -->
+  <audio id="bgMusic" loop>
+    <source src="music/old song.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- MUSIC BUTTON -->
+  <button class="music-btn" onclick="toggleMusic()">
+    🎵
+  </button>
+
+  <div class="blob blob1"></div>
+  <div class="blob blob2"></div>
+
+  <div id="petals"></div>
+
+  <!-- INTRO -->
+  <section id="intro" class="h-screen flex flex-col items-center justify-center text-center px-6 relative z-10">
+
+    <div class="floating text-8xl mb-8">
+      🌸
+    </div>
+
+    <h1 class="title-font text-6xl md:text-8xl fade-in text-[#ff73a8]">
+      Happy 21st Birthday
+    </h1>
+
+    <p class="mt-4 text-lg md:text-2xl fade-in text-[#7a5a6a]">
+      to the woman I love the most 💖
+    </p>
+
+    <button
+      onclick="openMainPage()"
+      class="cute-btn mt-10 px-10 py-4 rounded-full text-white text-lg font-semibold floating"
+    >
+      Open Your Gift 🎁
+    </button>
+
+  </section>
+
+  <!-- BOUQUET POPUP -->
+  <div id="bouquetPopup"
+    class="hidden fixed inset-0 z-[100] flex items-center justify-center bg-white/30 backdrop-blur-xl px-6">
+
+    <div class="text-center">
+
+      <div class="text-[120px] md:text-[180px] floating drop-shadow-2xl">
+        💐
+      </div>
+
+      <h2 class="title-font text-5xl md:text-7xl text-[#ff73a8] mt-6">
+        flowers for my birthday girl!
+      </h2>
+
+      <p class="text-lg md:text-2xl text-[#7a5a6a] mt-4">
+        made with all my love 💖
+      </p>
+
+      <button
+        onclick="continueToMain()"
+        class="cute-btn mt-10 px-10 py-4 rounded-full text-white text-lg font-semibold"
+      >
+        Continue ✨
+      </button>
+
+    </div>
+
+  </div>
+
+  <!-- MAIN PAGE -->
+  <section id="mainPage" class="hidden min-h-screen px-6 py-20 relative z-10">
+
+    <div class="text-center">
+
+      <h1 class="title-font text-6xl md:text-8xl text-[#ff73a8]">
+        Happy 21st Birthday,
+      </h1>
+
+      <h2 class="text-3xl md:text-5xl mt-2 font-semibold">
+        My Love 💖
+      </h2>
+
+      <p class="max-w-2xl mx-auto mt-6 text-lg text-[#7a5a6a]">
+        Today is all about you.
+        Every letter here contains messages from the people that cherish you the most.
+      </p>
+
+    </div>
+
+    <!-- GIFT -->
+    <div class="flex justify-center mt-16">
+
+      <div
+        onclick="showLetters()"
+        class="cursor-pointer text-8xl floating hover:scale-110 transition duration-300"
+      >
+        🎁
+      </div>
+
+    </div>
+
+    <!-- LETTER SECTION -->
+    <div id="lettersSection" class="hidden mt-24">
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-6xl mx-auto">
+
+        <div onclick="openLetter(1)" class="letter-card p-6 rounded-[2rem] shadow-xl cursor-pointer text-center">
+          <div class="text-4xl mb-3">💌</div>
+        </div>
+
+        <div onclick="openLetter(2)" class="letter-card p-6 rounded-[2rem] shadow-xl cursor-pointer text-center">
+          <div class="text-4xl mb-3">🌸</div>
+        </div>
+
+        <div onclick="openLetter(3)" class="letter-card p-6 rounded-[2rem] shadow-xl cursor-pointer text-center">
+          <div class="text-4xl mb-3">💖</div>
+        </div>
+
+        <div onclick="openLetter(4)" class="letter-card p-6 rounded-[2rem] shadow-xl cursor-pointer text-center">
+          <div class="text-4xl mb-3">🎀</div>
+        </div>
+
+        <div onclick="openLetter(5)" class="letter-card p-6 rounded-[2rem] shadow-xl cursor-pointer text-center">
+          <div class="text-4xl mb-3">🌷</div>
+        </div>
+
+        <div onclick="openLetter(6)" class="letter-card p-6 rounded-[2rem] shadow-xl cursor-pointer text-center">
+          <div class="text-4xl mb-3">🩷</div>
+        </div>
+
+        <div onclick="openLetter(7)" class="letter-card p-6 rounded-[2rem] shadow-xl cursor-pointer text-center">
+          <div class="text-4xl mb-3">🌹</div>
+        </div>
+
+        <!-- FINAL LETTER -->
+        <div
+          id="finalLetter"
+          onclick="openFinalLetter()"
+          class="letter-card locked p-6 rounded-[2rem] shadow-xl cursor-pointer text-center"
+        >
+          <div class="text-4xl mb-3">🔒</div>
+          <h3 class="font-bold text-lg">Final Letter</h3>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- MODAL -->
+  <div id="modal"
+    class="hidden fixed inset-0 modal flex items-center justify-center z-50 px-6">
+
+    <div class="modal-box rounded-[2rem] p-10 max-w-lg text-center shadow-2xl relative">
+
+      <button
+        onclick="closeModal()"
+        class="absolute top-4 right-5 text-2xl"
+      >
+        ✖
+      </button>
+
+      <h2 id="modalTitle"
+        class="title-font text-5xl text-[#ff73a8] mb-6">
+      </h2>
+
+      <p id="modalText"
+        class="text-lg leading-relaxed text-[#6d5663]">
+      </p>
+
+    </div>
+
+  </div>
+
+  <script>
+
+    // MUSIC
+
+    const music =
+      document.getElementById("bgMusic");
+
+    let isPlaying = false;
+
+    function toggleMusic(){
+
+      if(isPlaying){
+
+        music.pause();
+        isPlaying = false;
+
+      }else{
+
+        music.play();
+        isPlaying = true;
+      }
+    }
+
+    // FLOWERS
+
+    const flowers = ["🌸","🌷","💮","🌺"];
+
+    for(let i = 0; i < 35; i++){
+
+      const petal = document.createElement("div");
+
+      petal.classList.add("petal");
+
+      petal.innerHTML =
+        flowers[Math.floor(Math.random() * flowers.length)];
+
+      petal.style.left = Math.random() * 100 + "vw";
+
+      petal.style.animationDuration =
+        (8 + Math.random() * 8) + "s";
+
+      petal.style.fontSize =
+        (18 + Math.random() * 18) + "px";
+
+      petal.style.animationDelay =
+        Math.random() * 5 + "s";
+
+      document.getElementById("petals")
+        .appendChild(petal);
+    }
+
+    // OPEN MAIN PAGE
+
+    function openMainPage() {
+
+      // START MUSIC
+      music.play();
+      isPlaying = true;
+
+      document.getElementById("intro")
+        .classList.add("hidden");
+
+      document.getElementById("bouquetPopup")
+        .classList.remove("hidden");
+    }
+
+    // CONTINUE TO MAIN
+
+    function continueToMain() {
+
+      document.getElementById("bouquetPopup")
+        .classList.add("hidden");
+
+      document.getElementById("mainPage")
+        .classList.remove("hidden");
+    }
+
+    // SHOW LETTERS
+
+    function showLetters() {
+
+      document.getElementById("lettersSection")
+        .classList.remove("hidden");
+    }
+
+    // LETTER CONTENT
+
+    const letters = {
+
+      1: `Happiest birthday nikolskiii! To the girl who makes sure I'm always ok and comfortable sa mga bagay bagay. Thank you for being such an amazing person and the best friend anyone could ask for. You know naman na andito lang kami for you always. I hope we both win in life! I love you you since day one. 🥳
+hindi ko na pahabain baka umiyak pa ako 
+-melaaalalala`,
+      2: "Hi nikoooll, it's me yanna! Short greetings lang daw eh, ginawan pa naman kita ng lsm HAHAHAHAAH de pero seryoso na. Thanks so much for being part of our lives. Super thankful ako sa presence mo and kung pano ka nag ccare samin lagi. I hope u know na gusto din namin ibalik yung care na binibigay mo. Love u! Happiest 21st Birthday, Nikol! ^3^",
+      3: `Happy birthday to the girl in black.
+ Fierce eyes, soft heart, and a soul that stays true.
+ May you find your hue in every dark moment,
+ and may your dreams rise to astra.
+ Have a blast, Nicole - eldovin`,
+      4: `happy birthday nikol wish u all da best salamat sa pagiging spokesperson at defender ng kalamansi. sana makapagsamgyup na sa iyong birthday 😁 wag mo kami kalimutan pag unlad ng burikaks. ingat palagi at galingan sa lahat ng mangyayari sa CPE!!!!!!! sana di ka mapagod maging source sa gc ng lahat ng chika, happy birthday ulet, stay inlove sa love birds 😘 -benis`,
+
+      5: "Happy Birthday nics!! Wishing u all the best andito lang kami ng mga friends mo palagi, see u soon pag tapos netong mga busy days HAHAHAHAH anyways always stay positive and just be yourself andito lang kami to support u palagi, enjoy your day! -Aaron",
+      6: `Hii happy birthday, Nicole! I miss you so much. I know we can't meet up right now since we're both busy with life, but it's okay and I totally understand. I really wish you a happy birthday and hope you enjoy it! I love you so much, twinn! mwuah! ♡♡♡
+-Macs`,
+      7: `Surprise!! Gulat ka ba? Ayun, pakulo ni Jovan to eh. Kaso, maiisip niya kaya to kung di dahil sa
+bebe ni Pao? XD
+Senya at mukhang di ata ulit tuloy yung plano na gala with gang. Wala na talagang natuloy.. Pero
+mas okay na din yun siguro para buong-buo yung date niyo. Mangiistorbo lang siguro kami sa
+inyong dalawa kung madami tayo. Jk ofc. Na busy kasi ang person buhat ng ojt
+Happy Birthday!!! 21 na ang gng, bukod sa isa... Sana maging matatag at masaya tayo sa buhay
+ano. Kapagka may challenges kayo sa buhay eh tagusan niyo lang at hindi sana kayo mastuck.
+Enjoy ur birthday Nicole. Kung hindi ka nasurprise dito eh nako lalalaan ni Jovan yan next year -Gian`
+
+    };
+
+    let openedLetters = [];
+
+    // OPEN LETTER
+
+    function openLetter(num) {
+
+      document.getElementById("modal")
+        .classList.remove("hidden");
+
+      document.getElementById("modalTitle")
+        .innerText = "Letter " + num;
+
+      document.getElementById("modalText")
+        .innerText = letters[num];
+
+      if(!openedLetters.includes(num)) {
+        openedLetters.push(num);
+      }
+
+      // UNLOCK FINAL LETTER
+
+      if(openedLetters.length === 7) {
+
+        const finalLetter =
+          document.getElementById("finalLetter");
+
+        finalLetter.classList.remove("locked");
+
+        finalLetter.innerHTML = `
+          <div class="text-4xl mb-3">💖</div>
+          <h3 class="font-bold text-lg">Final Letter</h3>
+        `;
+      }
+    }
+
+    // FINAL LETTER
+
+function openFinalLetter() {
+
+  if(openedLetters.length < 7) return;
+
+  document.getElementById("modal")
+    .classList.remove("hidden");
+
+  document.getElementById("modalTitle")
+    .innerText = "To My Love 💖";
+
+  document.getElementById("modalText").innerHTML = `
+
+    <div style="
+      max-height: 420px;
+      overflow-y: auto;
+      padding-right: 12px;
+      text-align: center;
+      line-height: 2.2;
+      font-size: 18px;
+    ">
+
+      and ofcourse the last and the longest hehehe 💖
+
+      <br><br>
+
+      Happy Birthday to the prettiest and the most kind,
+      caring and loving woman i have ever met.
+
+      <br><br>
+
+      (sorry kung ito lang nakayanan pero mas babawi ako next yearrrr gurrr 🥺)
+
+      <br><br>
+
+      as im writing this letter right now my heart is full of joy
+      of our memories simula nung nakilala kita hanggang ngayon
+      the sparks on your eyes never fades,
+      even after all this years hulog na hulog padin ako
+      sa ngiti mong napaka ganda
+
+      <br><br>
+
+      hinding hindi ko malilimutan yung unang gabi na na meet kita
+      the feeling of finding the right person,
+      right time,
+      right place
+
+      <br><br>
+
+      everything seems all right 💖
+
+      <br><br>
+
+      you are the answer to all of my prayers
+      a woman na not just for fun kilig
+      but a woman na sasamahan ako sa lahat
+      ng journey ko sa buhay
+
+      <br><br>
+
+      panatag man ang daan o malubak at mahirap tawirin
+      lahat yon naitawid ko kasama ka hanggang ngayon
+
+      <br><br>
+
+      i will forever grateful na nakilala kita mahal ko
+      you are everything to me and i will always love you
+      to the fullest because you are everything to me
+
+      <br><br>
+
+      i always appreciate you
+      my kasama mo ako sa lahat
+      kakampi mo ako sa lahat
+
+      <br><br>
+
+      i will always be by your side
+
+      <br><br>
+
+      <span style="
+        font-size:24px;
+        font-weight:bold;
+        color:#ff73a8;
+      ">
+        mahal na mahal na mahal kita 💖
+      </span>
+
+      <br><br><br>
+
+      <div style="
+        text-align:right;
+        font-style:italic;
+        font-size:20px;
+      ">
+        - Voj
+      </div>
+
+    </div>
+
+  `;
+}
+    // CLOSE MODAL
+
+    function closeModal() {
+
+      document.getElementById("modal")
+        .classList.add("hidden");
+    }
+
+  </script>
+
+</body>
+</html>
