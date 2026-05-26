@@ -213,6 +213,44 @@
       transform:scale(1.08);
     }
 
+    /* MEMORY BUTTON */
+
+    .memory-btn{
+      margin-top:30px;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:14px 28px;
+      border:none;
+      border-radius:999px;
+      cursor:pointer;
+      color:white;
+      font-size:18px;
+      font-weight:700;
+      background:linear-gradient(135deg,#ff9fc5,#ff7eb3);
+      box-shadow:0 10px 25px rgba(255,126,179,.35);
+      transition:.3s ease;
+    }
+
+    .memory-btn:hover{
+      transform:translateY(-5px) scale(1.04);
+    }
+
+    /* MEMORY MODAL */
+
+    #memoryModal{
+      background:rgba(255,240,247,.4);
+      backdrop-filter:blur(12px);
+    }
+
+    .memory-image{
+      width:100%;
+      max-height:75vh;
+      object-fit:contain;
+      border-radius:25px;
+      box-shadow:0 15px 35px rgba(255,126,179,.25);
+    }
+
   </style>
 </head>
 
@@ -367,7 +405,7 @@
 
   </section>
 
-  <!-- MODAL -->
+  <!-- LETTER MODAL -->
   <div id="modal"
     class="hidden fixed inset-0 modal flex items-center justify-center z-50 px-6">
 
@@ -384,9 +422,32 @@
         class="title-font text-5xl text-[#ff73a8] mb-6">
       </h2>
 
-      <p id="modalText"
+      <div id="modalText"
         class="text-lg leading-relaxed text-[#6d5663]">
-      </p>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- MEMORY MODAL -->
+  <div id="memoryModal"
+    class="hidden fixed inset-0 z-[999] flex items-center justify-center px-6">
+
+    <div class="relative max-w-4xl w-full">
+
+      <button
+        onclick="closeMemoryModal()"
+        class="absolute -top-14 right-0 text-white text-4xl"
+      >
+        ✖
+      </button>
+
+      <img
+        src="images/memories.png"
+        alt="Memories"
+        class="memory-image"
+      >
 
     </div>
 
@@ -447,7 +508,6 @@
 
     function openMainPage() {
 
-      // START MUSIC
       music.play();
       isPlaying = true;
 
@@ -484,17 +544,22 @@
       1: `Happiest birthday nikolskiii! To the girl who makes sure I'm always ok and comfortable sa mga bagay bagay. Thank you for being such an amazing person and the best friend anyone could ask for. You know naman na andito lang kami for you always. I hope we both win in life! I love you you since day one. 🥳
 hindi ko na pahabain baka umiyak pa ako 
 -melaaalalala`,
+
       2: "Hi nikoooll, it's me yanna! Short greetings lang daw eh, ginawan pa naman kita ng lsm HAHAHAHAAH de pero seryoso na. Thanks so much for being part of our lives. Super thankful ako sa presence mo and kung pano ka nag ccare samin lagi. I hope u know na gusto din namin ibalik yung care na binibigay mo. Love u! Happiest 21st Birthday, Nikol! ^3^",
+
       3: `Happy birthday to the girl in black.
- Fierce eyes, soft heart, and a soul that stays true.
- May you find your hue in every dark moment,
- and may your dreams rise to astra.
- Have a blast, Nicole - eldovin`,
+Fierce eyes, soft heart, and a soul that stays true.
+May you find your hue in every dark moment,
+and may your dreams rise to astra.
+Have a blast, Nicole - eldovin`,
+
       4: `happy birthday nikol wish u all da best salamat sa pagiging spokesperson at defender ng kalamansi. sana makapagsamgyup na sa iyong birthday 😁 wag mo kami kalimutan pag unlad ng burikaks. ingat palagi at galingan sa lahat ng mangyayari sa CPE!!!!!!! sana di ka mapagod maging source sa gc ng lahat ng chika, happy birthday ulet, stay inlove sa love birds 😘 -benis`,
 
       5: "Happy Birthday nics!! Wishing u all the best andito lang kami ng mga friends mo palagi, see u soon pag tapos netong mga busy days HAHAHAHAH anyways always stay positive and just be yourself andito lang kami to support u palagi, enjoy your day! -Aaron",
+
       6: `Hii happy birthday, Nicole! I miss you so much. I know we can't meet up right now since we're both busy with life, but it's okay and I totally understand. I really wish you a happy birthday and hope you enjoy it! I love you so much, twinn! mwuah! ♡♡♡
 -Macs`,
+
       7: `Surprise!! Gulat ka ba? Ayun, pakulo ni Jovan to eh. Kaso, maiisip niya kaya to kung di dahil sa
 bebe ni Pao? XD
 Senya at mukhang di ata ulit tuloy yung plano na gala with gang. Wala na talagang natuloy.. Pero
@@ -543,109 +608,136 @@ Enjoy ur birthday Nicole. Kung hindi ka nasurprise dito eh nako lalalaan ni Jova
 
     // FINAL LETTER
 
-function openFinalLetter() {
+    function openFinalLetter() {
 
-  if(openedLetters.length < 7) return;
+      if(openedLetters.length < 7) return;
 
-  document.getElementById("modal")
-    .classList.remove("hidden");
+      document.getElementById("modal")
+        .classList.remove("hidden");
 
-  document.getElementById("modalTitle")
-    .innerText = "To My Love 💖";
+      document.getElementById("modalTitle")
+        .innerText = "To My Love 💖";
 
-  document.getElementById("modalText").innerHTML = `
+      document.getElementById("modalText").innerHTML = `
 
-    <div style="
-      max-height: 420px;
-      overflow-y: auto;
-      padding-right: 12px;
-      text-align: center;
-      line-height: 2.2;
-      font-size: 18px;
-    ">
+        <div style="
+          max-height: 420px;
+          overflow-y: auto;
+          padding-right: 12px;
+          text-align: center;
+          line-height: 2.2;
+          font-size: 18px;
+        ">
 
-      and ofcourse the last and the longest hehehe 💖
+          and ofcourse the last and the longest hehehe 💖
 
-      <br><br>
+          <br><br>
 
-      Happy Birthday to the prettiest and the most kind,
-      caring and loving woman i have ever met.
+          Happy Birthday to the prettiest and the most kind,
+          caring and loving woman i have ever met.
 
-      <br><br>
+          <br><br>
 
-      (sorry kung ito lang nakayanan pero mas babawi ako next yearrrr gurrr 🥺)
+          (sorry kung ito lang nakayanan pero mas babawi ako next yearrrr gurrr 🥺)
 
-      <br><br>
+          <br><br>
 
-      as im writing this letter right now my heart is full of joy
-      of our memories simula nung nakilala kita hanggang ngayon
-      the sparks on your eyes never fades,
-      even after all this years hulog na hulog padin ako
-      sa ngiti mong napaka ganda
+          as im writing this letter right now my heart is full of joy
+          of our memories simula nung nakilala kita hanggang ngayon
+          the sparks on your eyes never fades,
+          even after all this years hulog na hulog padin ako
+          sa ngiti mong napaka ganda
 
-      <br><br>
+          <br><br>
 
-      hinding hindi ko malilimutan yung unang gabi na na meet kita
-      the feeling of finding the right person,
-      right time,
-      right place
+          hinding hindi ko malilimutan yung unang gabi na na meet kita
+          the feeling of finding the right person,
+          right time,
+          right place
 
-      <br><br>
+          <br><br>
 
-      everything seems all right 💖
+          everything seems all right 💖
 
-      <br><br>
+          <br><br>
 
-      you are the answer to all of my prayers
-      a woman na not just for fun kilig
-      but a woman na sasamahan ako sa lahat
-      ng journey ko sa buhay
+          you are the answer to all of my prayers
+          a woman na not just for fun kilig
+          but a woman na sasamahan ako sa lahat
+          ng journey ko sa buhay
 
-      <br><br>
+          <br><br>
 
-      panatag man ang daan o malubak at mahirap tawirin
-      lahat yon naitawid ko kasama ka hanggang ngayon
+          panatag man ang daan o malubak at mahirap tawirin
+          lahat yon naitawid ko kasama ka hanggang ngayon
 
-      <br><br>
+          <br><br>
 
-      i will forever grateful na nakilala kita mahal ko
-      you are everything to me and i will always love you
-      to the fullest because you are everything to me
+          i will forever grateful na nakilala kita mahal ko
+          you are everything to me and i will always love you
+          to the fullest because you are everything to me
 
-      <br><br>
+          <br><br>
 
-      i always appreciate you
-      my kasama mo ako sa lahat
-      kakampi mo ako sa lahat
+          i always appreciate you
+          my kasama mo ako sa lahat
+          kakampi mo ako sa lahat
 
-      <br><br>
+          <br><br>
 
-      i will always be by your side
+          i will always be by your side
 
-      <br><br>
+          <br><br>
 
-      <span style="
-        font-size:24px;
-        font-weight:bold;
-        color:#ff73a8;
-      ">
-        mahal na mahal na mahal kita 💖
-      </span>
+          <span style="
+            font-size:24px;
+            font-weight:bold;
+            color:#ff73a8;
+          ">
+            mahal na mahal na mahal kita 💖
+          </span>
 
-      <br><br><br>
+          <br><br>
 
-      <div style="
-        text-align:right;
-        font-style:italic;
-        font-size:20px;
-      ">
-        - Voj
-      </div>
+          <!-- MEMORY GIFT BUTTON -->
+          <button
+            onclick="openMemoryModal()"
+            class="memory-btn"
+          >
+            🎁 Open Our Memories
+          </button>
 
-    </div>
+          <br><br><br>
 
-  `;
-}
+          <div style="
+            text-align:right;
+            font-style:italic;
+            font-size:20px;
+          ">
+            - Voj
+          </div>
+
+        </div>
+
+      `;
+    }
+
+    // OPEN MEMORY MODAL
+
+    function openMemoryModal(){
+
+      document.getElementById("memoryModal")
+        .classList.remove("hidden");
+    }
+
+    // CLOSE MEMORY MODAL
+
+    function closeMemoryModal(){
+
+      document.getElementById("memoryModal")
+        .classList.add("hidden");
+    }
+
     // CLOSE MODAL
 
     function closeModal() {
